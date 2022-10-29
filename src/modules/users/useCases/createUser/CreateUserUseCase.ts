@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -7,11 +8,21 @@ interface IRequest {
 }
 
 class CreateUserUseCase {
-  constructor(private usersRepository: IUsersRepository) {}
+  constructor(private usersRepository: IUsersRepository) { }
 
-  execute({ email, name }: IRequest): User {
-    // Complete aqui
+  execute({ name, email }: IRequest): User {
+    const userAlreadyExits = this.usersRepository.findByEmail(email);
+
+    if (userAlreadyExits) {
+      throw new Error("User Already Exists!");
+    }
+
+    const user = this.usersRepository.create({ name, email });
+
+    return user;
   }
+
+
 }
 
 export { CreateUserUseCase };
