@@ -22,6 +22,7 @@ class UsersRepository implements IUsersRepository {
   create({ name, email }: ICreateUserDTO): User {
 
     const user = new User();
+
     Object.assign(user, {
       name,
       email,
@@ -38,9 +39,8 @@ class UsersRepository implements IUsersRepository {
 
   findByEmail(email: string): User | undefined {
     const user = this.users.find((user) => user.email === email)
-    if (!user) {
-      throw Error("User not Alread exists");
-    }
+
+
     return user;
   }
 

@@ -14,14 +14,15 @@ class CreateUserUseCase {
     const userAlreadyExits = this.usersRepository.findByEmail(email);
 
     if (userAlreadyExits) {
-      throw new Error("User Already Exists!");
+      throw Error("User not Alread exists");
     }
 
-    const user = this.usersRepository.create({ name, email });
+    const user = { name, email }
 
-    return user;
+    this.usersRepository.create(user);
+
+    return userAlreadyExits;
   }
-
 
 }
 

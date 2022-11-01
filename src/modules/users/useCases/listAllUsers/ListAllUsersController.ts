@@ -7,10 +7,12 @@ class ListAllUsersController {
   constructor(private listAllUsersUseCase: ListAllUsersUseCase) { }
 
   handle(request: Request, response: Response): Response {
-    const user = request;
+    const { user_id } = request.headers;
+
+    // this.listAllUsersUseCase.findUser({ user_id })
 
 
-    const allUsers = this.listAllUsersUseCase.execute(request: Request);
+    const allUsers = this.listAllUsersUseCase.execute({ user_id });
     return response.json(allUsers);
   }
 }
