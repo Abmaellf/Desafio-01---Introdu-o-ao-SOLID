@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "description": "Essa é uma documentação sobre Atlas API",
+        "description": "Essa é uma documentação sobre Gestão de Usuários",
         "version": "1.0.0",
-        "title": "Atlas"
+        "title": "UserAPI"
     },
     "tags": [
         {
@@ -26,19 +26,7 @@
                         "application/json": {
                             "description": "Campos obrigatorios para a criação de usuários",
                             "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "email": {
-                                        "type": "string"
-                                    }
-                                },
-                                "exemple": {
-                                    "name": "Rocketseat",
-                                    "description": "rocketseat@gmail.com"
-                                }
+                                "$ref": "#/components/schemas/user"
                             }
                         }
                     }
@@ -49,26 +37,8 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "itens": {
-                                        "type": "object",
-                                        "properties": {
-                                            "name": {
-                                                "type": "string"
-                                            },
-                                            "description": {
-                                                "type": "string"
-                                            }
-                                        },
-                                        "exemple": {
-                                            "admin": "false",
-                                            "id": "rocketseat@gmail.com",
-                                            "name": "Rocketseat",
-                                            "email": "oi@rocketseat.com",
-                                            "created_at": "2021-03-10T22:10:32.9922",
-                                            "update_at": "2021-03-10T22:10:32.9922"
-                                        }
-                                    }
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/userCreated"
                                 }
                             }
                         }
@@ -196,6 +166,48 @@
                             }
                         }
                     }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "user": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "userCreated": {
+                "type": "object",
+                "properties": {
+                    "admin": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "value": "1f227c28-6068-4d7a-8456-8176cbb721da"
+                    },
+                    "name": {
+                        "type": "Rocket"
+                    },
+                    "email": {
+                        "type": "rocket@"
+                    },
+                    "created_at": {
+                        "type": "2022-11-01"
+                    },
+                    "updated_at": {
+                        "type": "2022-11-01"
+                    }
+                },
+                "example": {
+                    "admin": "false",
+                    "id": "1f227c28-6068-4d7a-8456-8176cbb721da"
                 }
             }
         }
